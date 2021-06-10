@@ -1,0 +1,13 @@
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+
+SELECT ?first ?last 
+        WHERE 
+        {
+            ?person ab:firstName ?first;
+                    ab:lastName  ?last.
+
+                    # Get all names minus those that have phone work phone numbers 
+                    MINUS {?person ab:workTel ?phone . }
+
+        }

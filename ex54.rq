@@ -1,0 +1,17 @@
+PREFIX ab:  <http://learningsparql.com/ns/addressbook#>
+
+SELECT ?first ?last ?phone ?email
+ 
+ WHERE {
+
+     ?person   #The conditions in this location are required 
+             ab:firstName  ?first;
+             ab:lastName   ?last.
+
+             OPTIONAL  #THe condition is optional it can or not be true. Not required
+             { 
+               ?person  ab:workTel    ?phone;
+                        ab:email      ?email.
+             }
+}
+

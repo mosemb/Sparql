@@ -1,0 +1,13 @@
+PREFIX ab:<http://learningsparql.com/ns/addressbook#>
+
+SELECT ?first ?last ?phone
+ 
+    WHERE {
+        ?person ab:firstName ?first;
+                ab:lastName ?last.
+
+        OPTIONAL{ ?person ab:workTel ?phone . }   
+        FILTER(!bound(?phone)) #When we bind it then it will return only files that fit the requirement
+                            # When we are not bound then it will return those that do not have phone nos.                     
+    }
+

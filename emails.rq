@@ -1,0 +1,25 @@
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+#SELECT ?first ?last ?phone
+#WHERE
+  #    {
+
+    #      ?person ab:homeTel "(229) 276-5135" .
+     #     ?person ab:homeTel   ?phone . 
+     #     ?person ab:firstName ?first .
+      #    ?person ab:lastName ?last .
+  
+#}
+
+#The query above can be re-written as shown below. But you can uncomment
+# The code above to view it running with all the lines as shown. 
+
+SELECT ?first ?last ?phone
+
+WHERE {
+     ?person ab:homeTel "(229) 276-5135";
+             ab:homeTel  ?phone;
+             ab:firstName ?first;
+             ab:lastName  ?last.
+
+}
