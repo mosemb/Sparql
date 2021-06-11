@@ -1,0 +1,17 @@
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+SELECT * 
+
+WHERE
+{
+    { ?person ab:firstName ?first;
+              ab:lastName ?last. 
+    }
+
+    UNION
+    { 
+
+        ?course ab:courseTitle ?courseName
+    }        
+}
+

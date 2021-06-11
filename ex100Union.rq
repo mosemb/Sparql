@@ -1,0 +1,25 @@
+PREFIX ab: <http://learningsparql.com/ns/addressbook#> 
+
+SELECT ?first ?last ?instrument
+
+WHERE {
+
+    {
+        ?person ab:firstName ?first;
+                ab:lastName  ?last;
+                ab:instrument "clarinet";
+                ab:instrument ?instrument .
+    }
+
+    UNION
+    {
+         ?person ab:firstName ?first;
+                ab:lastName  ?last;
+                ab:instrument "trumpet";
+                ab:instrument ?instrument .
+        
+    }
+
+
+
+}

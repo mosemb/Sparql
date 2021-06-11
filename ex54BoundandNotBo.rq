@@ -11,3 +11,4 @@ SELECT ?first ?last ?phone
                             # When we are not bound then it will return those that do not have phone nos.                     
     }
 
+

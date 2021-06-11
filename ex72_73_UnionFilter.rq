@@ -1,0 +1,25 @@
+PREFIX ab: <http://learningsparql.com/ns/addressbook#>
+
+SELECT ?first ?last ?courseName ?course
+
+WHERE
+{
+    { ?person ab:firstName ?first;
+              ab:lastName ?last;
+              ab:takingCourse ?course.
+
+       ?course ab:courseTitle "Modeling Data with OWL";
+               ab:courseTitle ?courseName.     
+    }
+
+    UNION
+    { 
+        ?person ab:firstName ?first;
+                ab:lastName ?last;
+                ab:takingCourse ?course.
+        
+       
+        ?course ab:courseTitle "Using SPARQL with non-RDF Data";
+                ab:courseTitle ?courseName.
+    }        
+}

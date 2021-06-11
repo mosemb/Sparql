@@ -1,0 +1,11 @@
+PREFIX e:<http://learningsparql.com/ns/expenses#>
+
+SELECT ?mealName
+
+WHERE {
+ 
+     ?meal e:description ?mealName .
+
+}
+
+LIMIT 2
