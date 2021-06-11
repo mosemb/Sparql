@@ -1,0 +1,113 @@
+# Namespace declarations
+@prefix ex: <http://www.example.org/#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+
+
+
+# -- RDF data  -- 
+#Everest 
+ex:MountEverest rdf:type ex:Mountain .
+
+ex:MountEverest ex:location _:b1 .
+_:b1            ex:locatedInRegion ex:Khumbu;
+                ex:locatedInCountry ex:Nepal;
+                ex:locationCapital  ex:Khathmandu;
+                ex:CapitalPopSize   ex:1442300.
+
+ex:MountEverest ex:location _:b2 .
+_:b2            ex:locatedInRegion ex:Xigaze;
+                ex:locatedInCountry ex:Tibet;
+                ex:locationCapital ex:Lhasa;
+                ex:CapitalPopSize  ex:3000000.
+
+ex:MountEverest ex:hasHeightInMeter 8848 .
+ex:MountEverest ex:firstClimbed [
+   ex:firstClimbedBy ex:TenzingNorgay ;
+   ex:firstClimbedBy ex:EdmundHillary ;
+   ex:firstClimbedInYear 1953 ;
+] .
+ex:MountEverest ex:hasName "Mount Everest"@en .
+ex:MountEverest ex:hasAlternativeName "Sagarmāthā"@ne .
+ex:MountEverest ex:hasAlternativeName "Chomolungma"@bo .
+
+#Lhotse
+ex:Lhotse rdf:type ex:Mountain .
+ex:Lhotse ex:location _:b3 .
+_:b3            ex:locatedInRegion ex:Khumbu;
+                ex:locatedInCountry ex:Nepal;
+                ex:locationCapital  ex:Khathmandu;
+                ex:CapitalPopSize   ex:1442300.
+
+ex:Lhotse ex:location _:b4 .
+_:b4            ex:locatedInRegion ex:Xigaze;
+                ex:locatedInCountry ex:Tibet;
+                ex:locationCapital ex:Lhasa;
+                ex:CapitalPopSize  ex:3000000.
+
+ex:Lhotse ex:hasHeightInMeter 8516 .
+ex:Lhotse ex:firstClimbed [
+   ex:firstClimbedBy ex:ErnstReiss  ;
+   ex:firstClimbedBy ex:FritzLuchsinger ;
+   ex:firstClimbedInYear 1956 ;
+] .
+ex:Lhotse ex:hasName "Lhotse" .
+
+#AmaDablam
+ex:AmaDablam rdf:type ex:Mountain .
+ex:AmaDablam  ex:location _:b5 .
+_:b5            ex:locatedInRegion ex:Khumbu;
+                ex:locatedInCountry ex:Nepal;
+                ex:locationCapital  ex:Khathmandu;
+                ex:CapitalPopSize   ex:1442300.
+
+ex:AmaDablam ex:hasHeightInMeter 6170 .
+ex:AmaDablam ex:firstClimbed [
+   ex:firstClimbedBy ex:MikeGill ;
+   ex:firstClimbedBy ex:BarryBishop ;
+   ex:firstClimbedBy ex:MikeWard ;
+   ex:firstClimbedBy ex:WallyRomanes ;
+] .
+ex:AmaDablam ex:hasName "Ama Dablam"@en .
+
+#AnnapurnaI
+ex:AnnapurnaI rdf:type ex:Mountain .
+ex:AnnapurnaI   ex:location _:b6 .
+_:b6           ex:locatedInRegion ex:AnnapurnaConservationArea;
+               ex:locatedInCountry ex:Nepal;
+               ex:locationCapital  ex:Khathmandu;
+               ex:CapitalPopSize   ex:1442300.
+ex:AnnapurnaI ex:hasHeightInMeter 8091 .
+ex:AnnapurnaI ex:hasName "AnnapurnaI"@en .
+
+#Kilimanjaro
+ex:MountKilimanjaro rdf:type ex:Mountain .
+ex:MountKilimanjaro ex:locatedInRegion ex:KilimanjaroRegion .
+ex:MountKilimanjaro   ex:location _:b7 .
+_:b7           ex:locatedInRegion ex:KilimanjaroRegion ;
+               ex:locatedInCountry ex:Tanzania;
+               ex:locationCapital  ex:Dodoma;
+               ex:CapitalPopSize   ex:410300.
+ex:MountKilimanjaro ex:hasHeightInMeter 5895 .
+ex:MountKilimanjaro ex:firstClimbed [
+   ex:firstClimbedBy ex:HansMeyer ;
+   ex:firstClimbedBy ex:LudwigPurtscheller ;
+   ex:firstClimbedInYear 1889 ;
+] .
+ex:MountKilimanjaro ex:hasName "Mount Kilimanjaro"@en .
+ex:KilimanjaroRegion rdf:type ex:Tanzanian .
+
+
+ex:AnnapurnaConservationArea rdf:type ex:NepaleseRegion .
+ex:Xigaze rdf:type ex:TibetanRegion .
+ex:Xigaze ex:hasName "Xigaze" .
+
+ex:TenzingNorgay rdf:type ex:Person .
+ex:TenzingNorgay ex:hasName "Tenzing Norgay" .
+ex:TenzingNorgay ex:hasClimbed ex:MountEverest .
+
+ex:EdmundHillary rdf:type ex:Person .
+ex:EdmundHillary ex:hasName "Edmund Hillary" .
+
+ex:ReinholdMessner ex:hasClimbed ex:MountEverest .
+ex:ReinholdMessner ex:hasClimbed ex:Lhotse  .
+ex:AnnapurnaI ex:hasBeenClimbedBy ex:ReinholdMessner  .

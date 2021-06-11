@@ -1,0 +1,16 @@
+PREFIX ex:<http://www.example.org/#>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+
+SELECT ?MountainName ?region ?country ?capital ?capitalpopsize
+
+WHERE {
+   ?mount rdf:type ex:Mountain. 
+   ?mount ex:location ?address.
+   ?mount ex:hasName ?MountainName.
+
+   ?address ex:locatedInRegion ?region. 
+   ?address ex:locatedInCountry ?country.
+   ?address ex:locationCapital  ?capital.
+   ?address ex:CapitalPopSize  ?capitalpopsize.
+}

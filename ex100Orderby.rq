@@ -1,0 +1,17 @@
+PREFIX e:<http://learningsparql.com/ns/expenses#>
+
+
+SELECT ?mealName ?date ?amount 
+
+    WHERE {
+
+        ?meal e:description ?mealName;
+              e:date        ?date;
+              e:amount      ?amount .
+    }
+
+ORDER BY ?amount  #Basically we are ordering the results by amount in ascending order by default. 
+
+
+
+
