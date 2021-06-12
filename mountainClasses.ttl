@@ -1,14 +1,108 @@
 # Namespace declarations
 @prefix ex: <http://www.example.org/#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
-
+@prefix owl:  <http://www.w3.org/2002/07/owl#> . 
 
 
 # -- RDF data  -- 
-ex:Mountain rdf:type rdfs:Class.
-ex:Person rdf:type rdfs:Class.
-ex:Capital rdf:type rdfs:Class.
-ex:Country rdf:type rdfs:Class.
+#Classes 
+ex:Mountain rdf:type rdfs:Class;
+            rdfs:label "Mountain".
+ex:Person rdf:type rdfs:Class;
+          rdfs:comment "People that climbed the mountais".
+ex:Capital rdf:type rdfs:Class;
+           rdfs:label "CapitalCities".
+ex:Country rdf:type rdfs:Class;
+           rdfs:label "Countries".
+ex:Region rdfs:type rdfs:Class;
+          rdfs:label "LocationRegion".                    
+ex:Name rdf:type rdfs:Class;
+        rdfs:label "MountainNames".
+
+
+#Properties 
+ex:hasName rdf:type  rdf:Property;
+           rdfs:domain ex:Mountain;
+           rdfs:range  ex:Name.
+
+ex:hasAlternativeName rdf:type rdf:Property;
+                      rdfs:domain ex:Mountain;
+                      rdfs:range ex:Name.
+
+ex:firstClimbed rdf:type rdf:Property;
+                rdfs:domain ex:Mountain;
+                rdfs:range  ex:Person.
+
+ex:hasHeightInMeter rdf:type rdf:Property;
+                    rdfs:domain ex:Mountain;
+                    rdfs:range ex:Mountain.
+
+ex:location rdf:type rdf:Property;
+            rdfs:domain ex:Mountain;
+            rdfs:range ex:Country.
+
+ex:CapitalPopSize rdf:type rdf:Property;
+                  rdfs:domain ex:Capital;
+                  rdfs:range ex:Capital.
+
+
+#Occupations
+ex:Mountaineer rdfs:subClassOf ex:Person.
+ex:Geographer rdfs:subClassOf ex:Person.
+ex:Explorer rdfs:subClassOf ex:Person.
+ex:WriterScientist rdfs:subClassOf ex:Person.    
+
+#Mountain instances
+ex:MountEverest rdf:type ex:Mountain;
+                ex:hasHeightInMeter ex:8848.
+
+ex:Lhotse rdf:type ex:Mountain;
+          ex:hasHeightInMeter ex:8516. 
+
+ex:AmaDablam rdf:type ex:Mountain;
+             ex:hasHeightInMeter ex:6170 .
+          
+ex:AnnapurnaI rdf:type ex:Mountain;
+              ex:hasHeightInMeter ex:8091.
+
+#Capital Instances 
+ex:Lhasa rdf:type ex:Capital;
+         ex:CapitalPopSize ex:3000000.
+
+ex:Khathmandu rdf:type ex:Capital;
+              ex:CapitalPopSize ex:1442300.
+
+ex:Dodoma rdf:type ex:Capital;
+          ex:CapitalPopSize ex:410300.
+
+# Equivalence with owl
+ex:EdmundHillary rdf:type ex:Person;
+                owl:sameAs "Edmund Hillary".
+
+ex:KilimanjaroRegion rdf:type ex:Region;
+                     owl:sameAs "Kilimanjaro".
+
+ex:MountEverest rdf:type ex:Mountain;
+                owl:sameAs "Chomolungma"@bo.
+
+ex:MountEverest rdf:type ex:Mountain;
+                owl:sameAs "Sagarmāthā"@ne.               
+
+ex:EdmundHillary rdf:type owl:ObjectProperty;
+                 owl:sameAs "Edmund Hillary".
+
+
+
+
+#Inverse of with owl
+ex:EdmundHillary rdf:type owl:ObjectProperty;
+                 owl:InverseOf ex:ErnstReiss. 
+
+
+
+
+
 #Everest 
 ex:MountEverest rdf:type ex:Mountain .
 
@@ -113,8 +207,7 @@ ex:AnnapurnaI ex:hasName "AnnapurnaI"@en .
 
 #Kilimanjaro
 ex:MountKilimanjaro rdf:type ex:Mountain .
-ex:MountKilimanjaro ex:locatedInRegion ex:KilimanjaroRegion .
-
+#ex:MountKilimanjaro ex:locatedInRegion ex:KilimanjaroRegion .
 ex:MountKilimanjaro   ex:location _:b7 .
 _:b7                ex:locatedInRegion  ex:KilimanjaroRegion ;
                     ex:locatedInCountry ex:Tanzania;

@@ -1,0 +1,22 @@
+PREFIX ex: <http://www.example.org/#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?mountaineer ?mountain ?birth ?death  ?occupation ?climbyear
+   
+   WHERE {
+       ?climb rdf:type  ex:Mountain.
+       ?climb ex:hasName ?mountain.
+       ?climb ex:firstClimbed ?climber.
+
+       ?climber ex:firstClimbedBy ?mountaineer.
+       ?climber ex:firstClimbedInYear ?climbyear.
+
+       OPTIONAL{
+       ?climber ex:birthdate  ?birth.
+       ?climber ex:deathdate  ?death.
+       ?climber ex:occupation ?occupation
+
+       }
+       
+
+   }
