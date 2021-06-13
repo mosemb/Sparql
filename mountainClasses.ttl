@@ -5,7 +5,7 @@
 @prefix owl:  <http://www.w3.org/2002/07/owl#> . 
 
 
-# -- RDF data  -- 
+
 #Classes 
 ex:Mountain rdf:type rdfs:Class;
             rdfs:label "Mountain".
@@ -18,7 +18,7 @@ ex:Country rdf:type rdfs:Class;
 ex:Region rdfs:type rdfs:Class;
           rdfs:label "LocationRegion".                    
 ex:Name rdf:type rdfs:Class;
-        rdfs:label "MountainNames".
+        rdfs:label "Names".
 
 
 #Properties 
@@ -76,7 +76,7 @@ ex:Khathmandu rdf:type ex:Capital;
 ex:Dodoma rdf:type ex:Capital;
           ex:CapitalPopSize ex:410300.
 
-# Equivalence with owl
+# Individuals that are the same. 
 ex:EdmundHillary rdf:type ex:Person;
                 owl:sameAs "Edmund Hillary".
 
@@ -89,20 +89,93 @@ ex:MountEverest rdf:type ex:Mountain;
 ex:MountEverest rdf:type ex:Mountain;
                 owl:sameAs "Sagarmāthā"@ne.               
 
-ex:EdmundHillary rdf:type owl:ObjectProperty;
-                 owl:sameAs "Edmund Hillary".
+ex:Xigaze rdf:type ex:Region;
+          owl:sameAs "Xigaze".
+
+#Individuals that are different we will put them in a blanc node
+_:diffI rdf:type owl:AllDifferent;
+        owl:distinctMembers (ex:MountEverest rdf:type ex:Mountain
+                             ex:Lhotse rdf:type ex:Mountain
+                             ex:MountKilimanjaro rdf:type ex:Mountain).
+
+_:diff2 rdf:type owl:AllDifferent;
+                 owl:distinctMembers(
+                     ex:Lhasa rdf:type ex:Capital
+                     ex:Dodoma rdf:type ex:Capital
+                     ex:Khathmandu rdf:type ex:Capital
+                 ).                          
+
+_:diff3 rdf:type owl:AllDifferent;
+        owl:distinctMembers(
+            ex:Tibet rdf:type ex:Country
+            ex:Nepal rdf:type ex:Country
+            ex:Tanzania rdf:type ex:Country 
+        ).
+
+_:diff4 rdf:type owl:AllDifferent;
+        owl:distinctMembers(
+            ex:HansMeyer rdf:type ex:Person
+            ex:Hillary rdf:type ex:Person
+            ex:EdmundHillary rdf:type ex:Person
+            ex:WallyRomanes rdf:type ex:Person
+        ).
 
 
+#Equivalent classes, They are subclasses. 
+ex:Mountaineer owl:Equivalent ex:Person.
+ex:Explorer owl:Equivalent ex:Person. 
+ex:Geographer owl:Equivalent ex:Person.
+ex:WriterScientist owl:Equivalent ex:Person. 
 
+#Disjoint classes
+_:disjcla  rdf:type owl:AllDisjointClasses;
+           owl:members( 
+                        ex:Mountain
+                        ex:Person
+                        ex:Capital
+                        ex:Name
+                        ex:Country
+           ).
 
 #Inverse of with owl
-ex:EdmundHillary rdf:type owl:ObjectProperty;
-                 owl:InverseOf ex:ErnstReiss. 
+ex:Tanzania rdf:type owl:ObjectProperty;
+                 owl:InverseOf ex:Dodoma. 
+
+ex:Tibet rdf:type owl:ObjectProperty;
+            owl:InverseOf ex:Lhasa.
+
+ex:Nepal rdf:type owl:ObjectProperty;
+         owl:InverseOf ex:Khathmandu.
+
+#Functional Properties 
+ex:hasCapital rdf:type rdfs:Property;
+              rdfs:domain ex:Country;
+              rdfs:range ex:Capital;
+              rdf:type owl:FunctionalProperty.
 
 
+ex:hasRegion rdf:type rdfs:Propterty;
+             rdfs:domain ex:Country;
+             rdfs:range ex:Region;
+             rdf:type owl:FunctionalProperty.
+
+ex:hasAlternativeName rdf:type rdf:Property;
+                      rdfs:domain ex:Mountain;
+                      rdfs:range ex:Name;
+                      rdf:type owl:FunctionalProperty.
+
+ex:firstClimbed rdf:type rdf:Property;
+                rdfs:domain ex:Mountain;
+                rdfs:range  ex:Person;
+                rdf:type owl:FunctionalProperty.
+
+ex:hasName rdf:type  rdf:Property;
+           rdfs:domain ex:Mountain;
+           rdfs:range  ex:Name;
+           rdf:type owl:FunctionalProperty.
 
 
-
+# -- RDF data  -- 
 #Everest 
 ex:MountEverest rdf:type ex:Mountain .
 
@@ -207,7 +280,7 @@ ex:AnnapurnaI ex:hasName "AnnapurnaI"@en .
 
 #Kilimanjaro
 ex:MountKilimanjaro rdf:type ex:Mountain .
-#ex:MountKilimanjaro ex:locatedInRegion ex:KilimanjaroRegion .
+ex:MountKilimanjaro ex:locatedInRegion ex:KilimanjaroRegion .
 ex:MountKilimanjaro   ex:location _:b7 .
 _:b7                ex:locatedInRegion  ex:KilimanjaroRegion ;
                     ex:locatedInCountry ex:Tanzania;
